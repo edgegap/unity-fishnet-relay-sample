@@ -1,0 +1,11 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Edgegap PredictionV2_CC.unity
+    guid: 6306e7e9f9217dc4db0c90686e3860e5
+  m_configObjects: {}
