@@ -99,4 +99,15 @@ public static class EdgegapRelayService
         string responseContent = await response.Content.ReadAsStringAsync();
         return JsonConvert.DeserializeObject<ApiResponse>(responseContent);
     }
+
+    public static async Task DeleteSessionAsync(string sessionId)
+    {
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("token", _relayProfileToken);
+        HttpResponseMessage response = await _httpClient.DeleteAsync($"{API_URL}/v1/relays/sessions/" + sessionId);
+        //Catch bad session ID
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new InvalidOperationException($"Error: {response.RequestMessage} - {response.ReasonPhrase}");
+        }
+    }
 }

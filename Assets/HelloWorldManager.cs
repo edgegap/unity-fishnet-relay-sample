@@ -11,6 +11,7 @@ namespace HelloWorld
     public class HelloWorldManager : MonoBehaviour
     {
         [SerializeField] private string _relayProfileToken = "RELAY_PROFILE_TOKEN";
+        [SerializeField] private bool _autoDestroySessionOnStop = true;
         [SerializeField] private TMP_InputField _sessionIdInputField;
         [SerializeField] private Button _createSessionButton;
         [SerializeField] private Button _joinSessionButton;
@@ -73,6 +74,8 @@ namespace HelloWorld
             {
                 case LocalConnectionState.Stopped:
                     SetButtonsInteractable(true);
+                    if(_autoDestroySessionOnStop && !string.IsNullOrWhiteSpace(_sessionIdInputField.text))
+                        EdgegapRelayService.DeleteSessionAsync(_sessionIdInputField.text);
                     break;
                 case LocalConnectionState.Starting:
                 case LocalConnectionState.Started:
